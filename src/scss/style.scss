@@ -1,0 +1,87 @@
+body, html {
+  font-family: Helvetica Neue, Helvetica, Arial;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+template {
+  display: none !important;
+}
+
+ul {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  li {
+    margin: 10px 0;
+  }
+}
+
+#wrapper {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.error {
+  color: red;
+}
+
+button {
+  cursor: pointer;
+  font-size: 16px;
+  border: 2px outset lightgray;
+  border-radius: 5px;
+  background-color: white;
+}
+
+#rockPaperScissors {
+  position: relative;
+  width: 800px;
+  height: 600px;
+
+  #audioControlsForm {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  #toggleMuteButton {
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    padding: 2px;
+    margin: 0;
+  }
+
+  #newGame {
+    position: absolute;
+    left: 100px;
+    bottom: 30px;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 7px;
+
+    p {
+      margin: 0;
+      padding: 5px 0;
+    }
+
+    #bestOfError {
+      display: none;
+    }
+  }
+
+  #resetGameForm {
+    position: absolute;
+    left: 350px;
+    bottom: 100px;
+  }
+
+  #gameControlsForm {
+    position: absolute;
+    left: 275px;
+    bottom: 10px;
+  }
+}

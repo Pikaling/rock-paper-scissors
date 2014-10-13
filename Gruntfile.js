@@ -20,6 +20,13 @@ module.exports = function(grunt) {
         qunit: {
             all: ['test/runner.html']
         },
+        sass: {
+            dist: {
+                files: {
+                    'build/css/style.css': 'src/scss/style.scss'
+                }
+            }
+        },
         concat: {
             project: {
                 src: 'src/js/**/*.js',
@@ -41,15 +48,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task
-    grunt.registerTask('default', ['concat', 'uglify']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify']);
 
     // Additional tasks
     grunt.registerTask('test', ['bower', 'jshint', 'qunit']);
-    grunt.registerTask('complete', ['bower', 'jshint', 'qunit', 'concat', 'uglify']);
+    grunt.registerTask('complete', ['bower', 'jshint', 'qunit', 'sass', 'concat', 'uglify']);
 
 };
 

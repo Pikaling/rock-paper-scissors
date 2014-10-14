@@ -4,13 +4,6 @@
 
 function GameView() {
     this.viewScaler = new ViewScaler();
-    this.hasHumanPlayer = false;
-    this.states = [];
-    this.currentState = 0;
-    this.player1Score = 0;
-    this.player2Score = 0;
-    this.winningMessage = " is the winner!";
-    this.gameOver = false;
 }
 
 /*
@@ -60,7 +53,7 @@ GameView.prototype.loadImages = function() {
 GameView.prototype.loadImage = function() {
     return function() {
         if(++this.loadedImages >= this.imageKeys.length) {
-            this.drawStartScreen();
+            this.resetGame();
         }
     }.bind(this);
 };
@@ -103,11 +96,25 @@ GameView.prototype.endGame = function(winner) {
     this.gameOver = true;
 };
 
+GameView.prototype.resetGame = function() {
+    this.states = [];
+    this.currentState = 0;
+    this.player1Score = 0;
+    this.player2Score = 0;
+    this.hasHumanPlayer = false;
+    this.winningMessage = " is the winner!";
+    this.gameOver = false;
+    this.drawStartScreen();
+};
+
 /*
  * Template manipulation
  */
 
 GameView.prototype.addNewGameForm = function() {
+    if(this.hasOwnProperty("resetGameTemplate")) {
+        this.resetGameTemplate.removeFrom("rockPaperScissors");
+    }
     this.newGameFormTemplate = new Template("newGameFormTemplate");
     this.newGameFormTemplate.appendTo("rockPaperScissors");
     this.newGameFormTemplate.setContent("newGame");
@@ -150,7 +157,7 @@ GameView.prototype.addResetGameForm = function() {
         bottom: (this.viewScaler.scale(100)) + "px",
         left: ((this.viewScaler.scale(this.viewScaler.MAX_WIDTH) - resetGameContentDimensions.width) / 2) + "px"
     });
-    this.resetGameTemplate.addEventListenerToElement("resetGame", "submit", this, "drawStartScreen");
+    this.resetGameTemplate.addEventListenerToElement("resetGameForm", "submit", this, "resetGame");
 };
 
 /*

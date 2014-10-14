@@ -139,7 +139,9 @@ GameView.prototype.enablePlayerInput = function() {
 };
 
 GameView.prototype.addResetGameForm = function() {
-    this.gameControlsTemplate.removeFrom("rockPaperScissors");
+    if(this.hasOwnProperty("gameControlsTemplate")) {
+        this.gameControlsTemplate.removeFrom("rockPaperScissors");
+    }
     this.resetGameTemplate = new Template("resetGameTemplate");
     this.resetGameTemplate.appendTo("rockPaperScissors");
     this.resetGameTemplate.setContent("resetGameForm");
